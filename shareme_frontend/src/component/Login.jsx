@@ -6,9 +6,10 @@ import shareVideo from '../assets/share.mp4'
 import logo from '../assets/logowhite.png'
 // IMPORT GAPI WILL DISABLE POPUP_CLOSED_BY_USER ERROR
 import { gapi } from 'gapi-script'
+import { client } from '../client'
 
 const Login = () => {
-
+  const navigate = useNavigate();
   const clientId = "982692063566-gth7cn08sjfh31beivqa2qplfgo2d0vk.apps.googleusercontent.com";
 
   // MIGHT OR MIGHT NOT BE NEEDED
@@ -22,7 +23,6 @@ const Login = () => {
     // console.log(response);
     // profileObj can be obtained from Console inspection
     localStorage.setItem('user', JSON.stringify(response.profileObj))
-
     const { name, googleId, imageUrl } = response.profileObj;
 
     // create new sanity doc for user & user will be saved in DB
@@ -33,6 +33,13 @@ const Login = () => {
       userName: name,
       image: imageUrl,
     }
+
+    // create new documents if it doesn't already exist in DB
+    client.createIfNotExists(doc)
+      // what happens after new user is made
+      .then(() => {
+        navigate('/', { replace: true })
+      })
   }
 
   return (
