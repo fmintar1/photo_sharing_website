@@ -7,7 +7,7 @@ import { AiTwotoneDelete } from 'react-icons/ai'
 import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { fetchUser } from '../utils/fetchUser'
 
-const Pin = ({ pin: { postedBy, image, _id, destination, save }}) => {
+const Pin = ({ pin: { postedBy, image, _id, save }}) => {
     const [postHovered, setPostHovered] = useState(false);
     const navigate = useNavigate();
     const user = fetchUser();
@@ -84,17 +84,6 @@ const Pin = ({ pin: { postedBy, image, _id, destination, save }}) => {
                             )}
                         </div>
                         <div className="flex justify-between items-center gap-2 w-full">
-                            {destination && (
-                                <a
-                                    href={destination}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className="bg-white flex items-center gap-2 text-black font-bold p-2 pl-4 pr-4 rounded-full opacity-70 hover:opacity-100 hover:shadow-md"
-                                >
-                                    <BsFillArrowUpRightCircleFill />
-                                    {destination.length > 20 ? destination.slice(8,20) : destination.slice(8)}
-                                </a>
-                            )}
                             {postedBy?._id === user.googleId && (
                                 <button
                                     type="button"

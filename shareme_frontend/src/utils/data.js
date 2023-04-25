@@ -59,7 +59,6 @@ export const categories = [
       }
     },
         _id,
-        destination,
         postedBy->{
           _id,
           userName,
@@ -86,7 +85,6 @@ export const categories = [
       title, 
       about,
       category,
-      destination,
       postedBy->{
         _id,
         userName,
@@ -120,7 +118,6 @@ export const categories = [
         }
       },
       _id,
-      destination,
       postedBy->{
         _id,
         userName,
@@ -146,7 +143,6 @@ export const categories = [
             }
           },
               _id,
-              destination,
               postedBy->{
                 _id,
                 userName,
@@ -177,7 +173,6 @@ export const categories = [
         }
       },
       _id,
-      destination,
       postedBy->{
         _id,
         userName,
@@ -202,7 +197,6 @@ export const categories = [
         }
       },
       _id,
-      destination,
       postedBy->{
         _id,
         userName,
