@@ -7,6 +7,7 @@ import { client } from '../client';
 import logo from '../assets/logo.png';
 import Pins from './Pins';
 import { userQuery } from '../utils/data';
+import { fetchUser } from '../utils/fetchUser'
 
 const Home = () => {
 
@@ -16,7 +17,7 @@ const Home = () => {
   // localStorage.getItem that is user
   // if it is not equal to undefined, parse getItem from storage
   // if it is undefined, set it to clear because something didn't go well
-  const userInfo = localStorage.getItem('user') !== 'undefined' ? JSON.parse(localStorage.getItem('user')) : localStorage.clear();
+  const userInfo = fetchUser();
 
   useEffect(() => {
     const query = userQuery(userInfo?.googleId);
