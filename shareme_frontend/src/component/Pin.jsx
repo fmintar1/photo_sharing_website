@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import { MdDownloadForOffline } from 'react-icons/md'
 import { AiTwotoneDelete } from 'react-icons/ai' 
-import { BsFillArrowUpRightCircleFill } from 'react-icons/bs'
 import { fetchUser } from '../utils/fetchUser'
 
 const Pin = ({ pin: { postedBy, image, _id, save }}) => {
@@ -12,7 +11,7 @@ const Pin = ({ pin: { postedBy, image, _id, save }}) => {
     const navigate = useNavigate();
     const user = fetchUser();
 
-    const alreadySaved = !!(save?.filter((item) => item.postedBy._id === user.googleId))?.length;
+    const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.googleId))?.length;
 
     const savePin = (id) => {
         if(!alreadySaved) {
@@ -21,10 +20,10 @@ const Pin = ({ pin: { postedBy, image, _id, save }}) => {
                 .setIfMissing({ save: []})
                 .insert('after', 'save[-1]', [{
                     _key: uuidv4(),
-                    userId: user.googleId,
+                    userId: user?.googleId,
                     postedBy: {
                         _type: 'postedBy',
-                        _ref: user.googleId
+                        _ref: user?.googleId
                     }
                 }])
                 .commit()
@@ -84,7 +83,7 @@ const Pin = ({ pin: { postedBy, image, _id, save }}) => {
                             )}
                         </div>
                         <div className="flex justify-between items-center gap-2 w-full">
-                            {postedBy?._id === user.googleId && (
+                            {postedBy?._id === user?.googleId && (
                                 <button
                                     type="button"
                                     onClick={(e) => {
